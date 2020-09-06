@@ -9,8 +9,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import androidx.annotation.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,12 +36,12 @@ public class LocaleHelper {
         baseLocale = defaultLocale;
     }
 
-    public static void loadLocales(int resourceId, @NotNull Context context, String preferenceName) {
+    public static void loadLocales(int resourceId, @NonNull Context context, String preferenceName) {
         locales = Arrays.asList(context.getResources().getStringArray(resourceId));
         prefName = preferenceName;
     }
 
-    public static void loadLocales(int resourceId, @NotNull Context context, String preferenceName, String defaultLocale) {
+    public static void loadLocales(int resourceId, @NonNull Context context, String preferenceName, String defaultLocale) {
         locales = Arrays.asList(context.getResources().getStringArray(resourceId));
         prefName = preferenceName;
         baseLocale = defaultLocale;
@@ -54,7 +53,7 @@ public class LocaleHelper {
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    public static Context setLocale(Context context, @NotNull String localeSpec) {
+    public static Context setLocale(Context context, @NonNull String localeSpec) {
         Locale locale;
         if (localeSpec.equals("system")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -80,17 +79,15 @@ public class LocaleHelper {
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    private static Context updateResources(@NotNull Context context, Locale locale) {
+    private static Context updateResources(@NonNull Context context, Locale locale) {
         Configuration configuration = context.getResources().getConfiguration();
         configuration.setLocale(locale);
         configuration.setLayoutDirection(locale);
         return context.createConfigurationContext(configuration);
     }
 
-    @NotNull
-    @Contract("_, _ -> param1")
     @SuppressWarnings("all")
-    private static Context updateResourcesLegacy(@NotNull Context context, Locale locale) {
+    private static Context updateResourcesLegacy(@NonNull Context context, Locale locale) {
         Resources resources = context.getResources();
 
         Configuration configuration = resources.getConfiguration();
