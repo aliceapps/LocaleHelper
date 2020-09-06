@@ -1,0 +1,3 @@
+include ':localehelper'
+include ':app'
+rootProject.name = "LocaleHelper"
