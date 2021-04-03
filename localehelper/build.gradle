@@ -1,16 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.aliceapps'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -25,7 +23,20 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.1.0'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
-    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.annotation:annotation:1.2.0'
+    testImplementation 'org.robolectric:robolectric:4.4'
+    testImplementation 'junit:junit:4.13.1'
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'io.github.aliceapps'
+    PUBLISH_ARTIFACT_ID = 'espresso-utils'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+    PUBLISH_DESCRIPTION = 'Custom Espresso matchers and actions'
+    PUBLISH_GITHUB_URL = 'https://github.com/aliceapps/EspressoUtils'
+    PUBLISH_GITHUB_CONNECTION = 'scm:git:github.com/aliceapps/EspressoUtils.git'
+    PUBLISH_GITHUB_DEVELOPER_CONNECTION = 'scm:git:ssh://github.com/aliceapps/EspressoUtils.git'
+    PUBLISH_GITHUB_CONNECTION_URL = 'https://github.com/aliceapps/EspressoUtils/tree/master'
+}
+
+apply from: "C:/Users/wildt/AndroidStudioProjects/scripts/publish-mavencentral.gradle"
